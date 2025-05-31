@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('scholarships', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->date('deadline')->nullable();
-            $table->unsignedBigInteger('admin_id'); // Who created this
+            $table->text('eligibility')->nullable();
+            $table->string('education_level')->nullable();
+            $table->string('provider')->nullable();
+            $table->text('required_documents')->nullable();
+            $table->string('contact_email')->nullable();
+            $table->string('contact_phone')->nullable();
             $table->timestamps();
-    
-            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -11,16 +11,16 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        if (auth()->user()->isAdmin()) {
+        if (auth()->user()->usertype == '1') {
             // Admin sees all
             $applications = Application::with('scholarship', 'user')->latest()->get();
-            return view('admin.applications', compact('applications')); // Admin view
+            return view('admin.application', compact('applications')); // Admin view
         } else {
             // Student sees only their own applications
             $applications = Application::with('scholarship')
                                 ->where('user_id', auth()->id())
                                 ->latest()->get();
-            return view('application.index', compact('applications')); // Student view
+            return view('student.application', compact('applications')); // Student view
         }
     }
 

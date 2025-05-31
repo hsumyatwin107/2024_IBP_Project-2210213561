@@ -18,6 +18,15 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function isAdmin()
+    {
+        // If you have a boolean column 'is_admin'
+        return $this->is_admin === 1;
+
+        // Or if you have a 'role' column:
+        // return $this->role === 'admin';
+    }
+
     /**
      * The attributes that are mass assignable.
      *

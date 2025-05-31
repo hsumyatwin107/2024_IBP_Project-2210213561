@@ -4,7 +4,12 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use Illuminate\Foundation\Http\Kernel as HttpKernel;
+ $middlewareGroups = [
+    'web' => [
+        \App\Http\Middleware\Localization::class,
+    ],
+];
 class Kernel extends ConsoleKernel
 {
     /**

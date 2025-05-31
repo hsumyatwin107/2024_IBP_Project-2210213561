@@ -45,7 +45,7 @@
         </x-slot>
     </x-form-section>
 
-    @if ($this->user->tokens->isNotEmpty())
+    @if ($user->tokens->isNotEmpty())
         <x-section-border />
 
         <!-- Manage API Tokens -->
@@ -62,7 +62,7 @@
                 <!-- API Token List -->
                 <x-slot name="content">
                     <div class="space-y-6">
-                        @foreach ($this->user->tokens->sortBy('name') as $token)
+                        @foreach ($user->tokens->sortBy('name') as $token)
                             <div class="flex items-center justify-between">
                                 <div class="break-all">
                                     {{ $token->name }}

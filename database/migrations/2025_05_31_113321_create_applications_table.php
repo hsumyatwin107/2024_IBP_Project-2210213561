@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_id');
-            $table->unsignedBigInteger('scholarship_id');
-            $table->enum('status', ['pending', 'accepted', 'denied'])->default('pending');
-            $table->text('application_letter')->nullable();
-            $table->timestamps();
-    
-            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('scholarship_id')->references('id')->on('scholarships')->onDelete('cascade');
-        });
+    $table->unsignedBigInteger('user_id');
+    $table->unsignedBigInteger('scholarship_id');
+    $table->string('full_name');
+    $table->string('email');
+    $table->string('status')->default('pending');
+    $table->string('cv_path');
+    $table->timestamps();
+
+    $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    $table->foreign('scholarship_id')->references('id')->on('scholarships')->onDelete('cascade');
+});
     }
 
     /**

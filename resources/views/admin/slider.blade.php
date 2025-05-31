@@ -32,7 +32,7 @@
                     <a href="#" class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
                             <div class="preview-icon bg-dark rounded-circle">
-                                <i class="mdi mdi-onepassword  text-info"></i>
+                                <i class="mdi mdi-onepassword text-info"></i>
                             </div>
                         </div>
                         <div class="preview-item-content">
@@ -57,54 +57,53 @@
             <span class="nav-link">Navigation</span>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="">
-              <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
-              </span>
+            <a class="nav-link" href="{{ url('redirect') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                </span>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
+
+        {{-- Scholarship Section --}}
+<li class="nav-item menu-items">
+    <a class="nav-link" href="{{ url('scholarship') }}">
+        <span class="menu-icon">
+            <i class="mdi mdi-laptop"></i>
+        </span>
+        <span class="menu-title">Scholarship</span>
+    </a>
+</li>
+
+
+        {{-- Application Section --}}
         <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
-              </span>
-                <span class="menu-title">Hospital</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{url('view_h_m')}}">Add a section info</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{url('show_h_m')}}">Show the info</a></li>
-                    {{--                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>--}}
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('category')}}">
-              <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
-              </span>
-                <span class="menu-title">Category</span>
+            <a class="nav-link" href="{{ url('application') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-playlist-play"></i>
+                </span>
+                <span class="menu-title">Application</span>
             </a>
         </li>
+
+        {{-- User Messages --}}
         <li class="nav-item menu-items">
-            <a class="nav-link" href="user_messages">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
+            <a class="nav-link" href="{{ url('user_messages') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
                 <span class="menu-title">User Messages</span>
             </a>
         </li>
 
+        {{-- Users --}}
         <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('users')}}">
-              <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
-              </span>
+            <a class="nav-link" href="{{ url('users') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-chart-bar"></i>
+                </span>
                 <span class="menu-title">Users</span>
             </a>
         </li>
-
     </ul>
 </nav>
