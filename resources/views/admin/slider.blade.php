@@ -90,7 +90,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('user_messages') }}">
                 <span class="menu-icon">
-                    <i class="mdi mdi-table-large"></i>
+                    <i class="mdi mdi-chart-bar"></i>
                 </span>
                 <span class="menu-title">User Messages</span>
             </a>

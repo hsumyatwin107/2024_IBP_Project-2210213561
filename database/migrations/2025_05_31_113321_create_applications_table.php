@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
     $table->unsignedBigInteger('user_id');
     $table->unsignedBigInteger('scholarship_id');
-    $table->string('full_name');
+    $table->string('full_name')->nullable();
     $table->string('email');
     $table->string('status')->default('pending');
-    $table->string('cv_path');
+    $table->string('cv_path')->nullable();
     $table->timestamps();
 
     $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

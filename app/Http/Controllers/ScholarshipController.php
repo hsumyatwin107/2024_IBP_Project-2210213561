@@ -13,12 +13,12 @@ class ScholarshipController extends Controller
         $scholarships = Scholarship::all();
         $scholarships = Scholarship::orderBy('deadline', 'asc')->get();
 
-        return view('scholarship.index', compact('scholarships'));
+        return view('admin.scholarship.index', compact('scholarships'));
     }
 
     public function create()
     {
-        return view('scholarship.create');
+        return view('admin.scholarship.create');
     }
 
     public function store(Request $request)
@@ -34,12 +34,12 @@ class ScholarshipController extends Controller
 
     public function show(Scholarship $scholarship)
     {
-        return view('scholarship.show', compact('scholarship'));
+        return view('admin.scholarship.show', compact('scholarship'));
     }
 
     public function edit(Scholarship $scholarship)
     {
-        return view('scholarship.edit', compact('scholarship'));
+        return view('admin.scholarship.edit', compact('scholarship'));
     }
 
     public function update(Request $request, Scholarship $scholarship)
@@ -72,8 +72,13 @@ class ScholarshipController extends Controller
     Application::create([
         'user_id' => $user->id,
         'scholarship_id' => $id,
+        'full_name' => $request->input('full_name'),
+        'email' => $user->email,
+        
     ]);
 
     return redirect()->back()->with('success', 'Application submitted successfully!');
 }
+
+
 }

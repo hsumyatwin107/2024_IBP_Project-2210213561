@@ -3,14 +3,32 @@
 <head>
     <style type="text/css">
 
-        .mine {
-            margin: auto;
-            width: 50%;
-            text-align: center;
-        }
         table,th,td {
             border: 1px solid navajowhite;
         }
+        .order_dis{
+
+            text-align: center;
+            font-size: 30px;
+            padding-bottom: 30px;
+        }
+
+        .table_des{
+        border: 2px solid white;
+        margin: auto;
+        width: 100%;
+        text-align: center;
+        }
+
+        .th_des{
+
+        background: #0c5460;
+        font-size: 20px;
+        }
+        .text_color{
+        color: black;
+        }
+
 
     </style>
     <!-- Required meta tags -->
@@ -28,31 +46,39 @@
         <div class="content-wrapper">
             <div >
                 <h5 style="padding-left: 40%;padding-top: 5%;padding-bottom: 5%; font-size: 40px">User Messages</h5>
-                <div class="mine">
-                    <table style="margin: auto">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Message</th>
-                            <th>Action</th>
+                <div class="order_dis">
+                <table class="table_des">
+        <tr class="th_des">
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Message</th>
+            <th>Reply</th>
+            <th>Action</th>
+        </tr>
+    <tbody>
+        @foreach($message as $item)
+        <tr>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->email }}</td>
+            <td>{{ $item->phone }}</td>
+            <td>{{ $item->user_message }}</td>
+            <td>
+                <form method="POST" action="{{ url('reply_message/' . $item->id) }}">
+                    @csrf
+                    <input type="text" name="reply" placeholder="Enter reply" value="{{ $item->reply }}" />
+                    <button type="submit" class="btn btn-primary btn-sm">Send</button>
+                </form>
+            </td>
+            <td>
+                <a href="{{ url('delete_message', $item->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 
-
-                        </tr>
-                        @foreach($message as $message)
-                            <tr>
-                                <td>{{$message->name}}</td>
-                                <td>{{$message->email}}</td>
-                                <td>{{$message->phone}}</td>
-                                <td>{{$message->user_message}}</td>
-                                <td>
-                                    <a href="{{url('delete_message',$message->id)}}"  onclick="return confirm('are you sure you want to delete this message?')" class="btn btn-danger">Delete</a>
-                                </td>
-
-
-                            </tr>
-                        @endforeach
-                    </table>
+                        
                 </div>
             </div>
 

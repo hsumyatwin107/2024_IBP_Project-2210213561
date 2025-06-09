@@ -1,47 +1,73 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('My Scholarship Applications') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid navajowhite;
+        }
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <!-- Your application list/table goes here -->
+        .order_dis {
+            text-align: center;
+            font-size: 30px;
+            padding-bottom: 30px;
+        }
 
-                    @if ($applications->isEmpty())
-                        <p>You have not applied to any scholarships yet.</p>
-                    @else
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead>
+        .table_des {
+            border: 2px solid white;
+            margin: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .th_des {
+            background: #0c5460;
+            color: white;
+            font-size: 20px;
+        }
+
+        .text_color {
+            color: black;
+        }
+    </style>
+    @include('student.css')
+</head>
+<body>
+<div class="container-scroller">
+    @include('student.slider')
+    @include('student.header')
+
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <h5 style="text-align: center; padding: 5% 0; font-size: 40px;">My Scholarship Applications</h5>
+
+            <div class="order_dis">
+                @if ($applications->isEmpty())
+                    <p>You have not applied to any scholarships yet.</p>
+                @else
+                    <table class="table_des">
+                        <thead>
+                            <tr class="th_des">
+                                <th>Scholarship Name</th>
+                                <th>Status</th>
+                                <th>Applied At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($applications as $application)
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Scholarship Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Applied At</th>
+                                    <td>{{ $application->scholarship->name }}</td>
+                                    <td>{{ ucfirst($application->status) }}</td>
+                                    <td>{{ $application->created_at->format('M d, Y') }}</td>
                                 </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($applications as $application)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $application->scholarship->name }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ ucfirst($application->status) }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            {{ $application->created_at->format('M d, Y') }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-
-                </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @endif
             </div>
         </div>
     </div>
-</x-app-layout>
+
+    @include('student.js')
+</div>
+</body>
+</html>

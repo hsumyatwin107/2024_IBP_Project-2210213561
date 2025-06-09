@@ -21,7 +21,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     </style>
 
-    <title>Fashion Hub Ecommerce Category Bootstrap Responsive Website Template| Home :: w3layouts</title>
+    <!-- <title>Fashion Hub Ecommerce Category Bootstrap Responsive Website Template| Home :: w3layouts</title> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Fashion Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,

@@ -13,6 +13,7 @@ class Application extends Model
         'full_name',
         'email',
         'cv_path',
+        'user_id',
     ];
     public function scholarship()
 {

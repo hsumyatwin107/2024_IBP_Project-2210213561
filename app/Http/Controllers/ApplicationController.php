@@ -23,6 +23,14 @@ class ApplicationController extends Controller
             return view('student.application', compact('applications')); // Student view
         }
     }
+    public function myApplications()
+{
+    // You can write logic here to get user's applications
+    // For example:
+    $applications = Application::where('user_id', auth()->id())->get();
+
+    return view('student.application', compact('applications'));
+}
 
     public function create()
     {

@@ -6,29 +6,39 @@ use Illuminate\Http\Request;
 use App\Models\Scholarship;
 use App\Models\Application;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ContactMessages; // Import the ContactMessages model
 
 class StudentController extends Controller
 {
     public function index()
     {
-        return view('student.home');
+        return view('student.scholarships');
     }
+    public function showMessages()
+{
+    $userId = auth()->id(); // Assuming user is logged in
+    $messages = ContactMessages::where('user_id', $userId)->get();
+    return view('student.message', compact('messages'));
+}
+public function showForStudents()
+{
+    $scholarships = Scholarship::all();
+    $appliedScholarshipIds = Application::where('user_id', auth()->id())
+        ->pluck('scholarship_id')
+        ->toArray(); // Optional: easier to check with `in_array`
 
-    public function showScholarships()
-    {
-        $scholarships = Scholarship::all();
-        return view('student.scholarships', compact('scholarships'));
-    }
+    return view('student.scholarships', compact('scholarships', 'appliedScholarshipIds'));
+}
 
     public function applyForm($id)
     {
-        $scholarship = Scholarship::findOrFail($id);
-        return view('student.apply', compact('scholarship'));
+        $scholarships = Scholarship::findOrFail($id);
+        return view('student.apply', compact('scholarships'));
     }
     public function myApplications()
 {
     // Assuming you have student login and Auth::user() returns the logged-in student
-    $applications = Application::where('user_id', Auth::id())->with('scholarship')->get();
+    $applications = Application::where('user_id', Auth::id())->with('scholarships')->get();
     return view('student.my_applications', compact('applications'));
 }
     public function submitApplication(Request $request)
