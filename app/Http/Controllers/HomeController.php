@@ -1,26 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Hospital_sec;
+use App\Models\ScholarshipNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\user_m;
 use App\Models\Scholarship;
-
+use App\Models\AboutSection;
 
 class HomeController extends Controller
 {
-    public function redirect(){
-
+    public function redirect()
+    {
         $usertype = Auth::user()->usertype;
 
-        if ($usertype == '1'){
-
+        if ($usertype == '1') {
             return view('admin.home');
-        }
-        else{
-            
+        } else {
             $scholarships = Scholarship::all();
             return view('student.home', compact('scholarships'));
         }
@@ -28,19 +27,21 @@ class HomeController extends Controller
 
     public function index()
     {
-        
-        $scholarships = Scholarship::all(); 
-        return view('home.home', compact('scholarships'));
+        $scholarships = Scholarship::all();
+        $about = AboutSection::first(); 
+        $scholarshipNews = ScholarshipNews::latest()->take(5)->get(); 
+
+        return view('home.home', compact('scholarships','about','scholarshipNews'));
     }
 
-    public function contact(){
-
+    public function contact()
+    {
         return view('home.contact');
     }
 
-    public function user_message(Request $request){
-
-         $user_message = new user_m();
+    public function user_message(Request $request)
+    {
+        $user_message = new user_m();
 
         $user_message->name = $request->name;
         $user_message->email = $request->email;
@@ -50,23 +51,23 @@ class HomeController extends Controller
         $user_message->save();
 
         return redirect()->back();
-
     }
 
     public function about()
     {
-        return view('home.about');
+        $about = AboutSection::first(); // Load first record for about section
+        return view('home', compact('about'));
     }
+
     public function home()
-{
-    $socialLinks = [
-        'facebook' => 'https://www.facebook.com/your-page',
-        'instagram' => 'https://www.instagram.com/your-page',
-        'twitter' => 'https://twitter.com/your-page',
-        'linkedin' => 'https://www.linkedin.com/in/your-page',
-    ];
+    {
+        $socialLinks = [
+            'facebook' => 'https://www.facebook.com/your-page',
+            'instagram' => 'https://www.instagram.com/your-page',
+            'twitter' => 'https://twitter.com/your-page',
+            'linkedin' => 'https://www.linkedin.com/in/your-page',
+        ];
 
-    return view('home', compact('socialLinks'));
-}
-
+        return view('home', compact('socialLinks'));
+    }
 }

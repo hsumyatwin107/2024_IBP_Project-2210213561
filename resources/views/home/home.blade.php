@@ -364,15 +364,29 @@
         </div>
     </div>
 
-    <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>We are dedicated to providing support and scholarships for students in need. Our mission is to make education accessible to all.</p>
-    </section>
+    <section id="about" class="about" style="background-color: #000; color: white; padding: 40px 20px;">
+    <h2>About Us</h2>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        @if($about)
+            <img src="{{ asset('uploads/about/' . $about->image) }}" alt="About Image" style="max-width: 300px; border-radius: 10px; margin-bottom: 20px;">
+        @endif
+        <p>{{ $about->description ?? 'We are dedicated to providing support and scholarships for students in need.' }}</p>
+        <p>{{ $about->contact ?? '' }}</p>
+    </div>
+</section>
 
-    <section id="scholarship" class="scholarship">
-        <h2>Scholarships</h2>
-        <p>We offer a variety of scholarships to students with different needs and goals.</p>
-    </section>
+<section id="scholarship" class="scholarship" style="background-color: #000; color: white; padding: 40px 20px;">
+    <h2>Scholarship Announcements</h2>
+    <ul>
+        @foreach($scholarshipNews as $news)
+            <li style="margin-bottom: 15px;">
+                <strong>{{ $news->title }}</strong><br>
+                <span>{{ $news->description }}</span>
+            </li>
+        @endforeach
+    </ul>
+</section>
+
 
     <!-- Contact Us Section as Footer -->
     <section id="contact" class="contact">

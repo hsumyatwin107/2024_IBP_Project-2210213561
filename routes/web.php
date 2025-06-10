@@ -85,3 +85,11 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     Route::get('/scholarships', [StudentController::class, 'showForStudents'])->name('student.scholarships');
 });
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/about-section', [AdminController::class, 'showAboutForm']);
+    Route::post('/admin/about-section', [AdminController::class, 'updateAboutSection'])->name('admin.about.update');
+});
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/scholarship-news', [AdminController::class, 'showScholarshipForm'])->name('admin.scholarship.form');
+    Route::post('/admin/scholarship-news/update', [AdminController::class, 'updateScholarship'])->name('admin.scholarship.update');    
+});
