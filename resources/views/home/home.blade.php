@@ -377,6 +377,7 @@
 
 <section id="scholarship" class="scholarship" style="background-color: #000; color: white; padding: 40px 20px;">
     <h2>Scholarship Announcements</h2>
+    
     <ul>
         @foreach($scholarshipNews as $news)
             <li style="margin-bottom: 15px;">

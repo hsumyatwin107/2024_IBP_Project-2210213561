@@ -15,6 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('father_name')->requied();
+            $table->string('mother_name')->required();
+            $table->string('gender')->required();
+            $table->date('date_of_birth')->required();
+            $table->string('country_of_birth')->required();
+            $table->string('city_of_birth')->required();
+            $table->string('residence_permit_number')->nullable();
+            $table->string('passport_number')->nullable();
             $table->string('usertype')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

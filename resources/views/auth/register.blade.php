@@ -13,6 +13,58 @@
                 <x-label for="name" value="{{ __('Name') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
+            <!-- Father Name -->
+<div class="mt-4">
+    <x-label for="father_name" value="{{ __('Father Name') }}" />
+    <x-input id="father_name" class="block mt-1 w-full" type="text" name="father_name" :value="old('father_name')" required autofocus autocomplete="father_name" />
+</div>
+
+<!-- Mother Name -->
+<div class="mt-4">
+    <x-label for="mother_name" value="{{ __('Mother Name') }}" />
+    <x-input id="mother_name" class="block mt-1 w-full" type="text" name="mother_name" :value="old('mother_name')" required autocomplete="mother_name" />
+</div>
+
+<!-- Gender -->
+<div class="mt-4">
+    <x-label for="gender" value="{{ __('Gender') }}" />
+    <select id="gender" name="gender" class="block mt-1 w-full" required>
+        <option value="">{{ __('Select Gender') }}</option>
+        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>{{ __('Male') }}</option>
+        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>{{ __('Female') }}</option>
+        <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>{{ __('Other') }}</option>
+    </select>
+</div>
+
+<!-- Date of Birth -->
+<div class="mt-4">
+    <x-label for="date_of_birth" value="{{ __('Date of Birth') }}" />
+    <x-input id="date_of_birth" class="block mt-1 w-full" type="date" name="date_of_birth" :value="old('date_of_birth')" required />
+</div>
+
+<!-- Country of Birth -->
+<div class="mt-4">
+    <x-label for="country_of_birth" value="{{ __('Country of Birth') }}" />
+    <x-input id="country_of_birth" class="block mt-1 w-full" type="text" name="country_of_birth" :value="old('country_of_birth')" required />
+</div>
+
+<!-- City of Birth -->
+<div class="mt-4">
+    <x-label for="city_of_birth" value="{{ __('City of Birth') }}" />
+    <x-input id="city_of_birth" class="block mt-1 w-full" type="text" name="city_of_birth" :value="old('city_of_birth')" required />
+</div>
+
+<!-- Residence Permit Number -->
+<div class="mt-4">
+    <x-label for="residence_permit_number" value="{{ __('Residence Permit Number') }}" />
+    <x-input id="residence_permit_number" class="block mt-1 w-full" type="text" name="residence_permit_number" :value="old('residence_permit_number')" required />
+</div>
+
+<!-- Passport Number -->
+<div class="mt-4">
+    <x-label for="passport_number" value="{{ __('Passport Number') }}" />
+    <x-input id="passport_number" class="block mt-1 w-full" type="text" name="passport_number" :value="old('passport_number')" required />
+</div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Email') }}" />
