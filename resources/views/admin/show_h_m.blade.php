@@ -55,13 +55,11 @@
             @endif
 
             <h2 class="font_size">All Sections</h2>
-
+            <div class="add_product">
+                <a href="{{url('add_h_m')}}" class="btn btn-primary">Add Section</a>
             <table class="center">
                 <tr class="tabel_color">
-                    <th class="space">Doctor's name</th>
                     <th class="space">Description</th>
-                    <th class="space">Appointment Price</th>
-                    <th class="space">Section</th>
                     <th class="space">Image</th>
                     <th class="space">Edit</th>
                     <th class="space">Delete</th>
@@ -69,10 +67,7 @@
 
                 @foreach($product as $product)
                     <tr>
-                        <td>{{$product->doctor_name}}</td>
                         <td>{{$product->description}}</td>
-                        <td>{{$product->Price}}$</td>
-                        <td>{{$product->category}}</td>
                         <td>
                             <img class="img_size" src="/product/{{$product->image}}">
                         </td>

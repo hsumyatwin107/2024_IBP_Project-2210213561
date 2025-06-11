@@ -415,13 +415,27 @@
 
     <section id="about" class="about" style="background-color: #000; color: white; padding: 40px 20px;">
     <h2>About Us</h2>
-    <div style="display: flex; flex-direction: column; align-items: center;">
-        @if($about)
-            <img src="{{ asset('uploads/about/' . $about->image) }}" alt="About Image" style="max-width: 300px; border-radius: 10px; margin-bottom: 20px;">
-        @endif
-        <p>{{ $about->description ?? 'We are dedicated to providing support and scholarships for students in need.' }}</p>
-        <p>{{ $about->contact ?? '' }}</p>
+    <div class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="relative w-full max-w-md">
+        <div id="photo-frame" class="flex flex-col items-center transition-all duration-500">
+        @if (isset($aboutSections) && count($aboutSections))
+    @foreach ($aboutSections as $index => $aboutSection)
+        <div class="about-item" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
+            <img src="{{ asset('storage/' . $aboutSection->photo) }}" alt="Photo" class="w-64 h-64 object-cover rounded shadow-lg">
+            <h2 class="mt-4 text-xl font-semibold">{{ $aboutSection->label }}</h2>
+            <p class="mt-2 text-sm">{{ $aboutSection->contact }}</p>
+        </div>
+    @endforeach
+@endif
+        </div>
+        
+        <div class="flex justify-between w-full absolute top-1/2 transform -translate-y-1/2">
+            <button onclick="showPrev()" class="text-white text-2xl px-4">&#8592;</button>
+            <button onclick="showNext()" class="text-white text-2xl px-4">&#8594;</button>
+        </div>
     </div>
+</div>
+
 </section>
 
 <section id="scholarship" class="scholarship-section">
@@ -484,7 +498,24 @@
         function closeMenu() {
             document.getElementById('menu-toggle').checked = false;
         }
-    </script>
+    
+    let current = 0;
+    const items = document.querySelectorAll('.about-item');
+
+    function showItem(index) {
+        items.forEach((el, i) => el.style.display = i === index ? 'block' : 'none');
+    }
+
+    function showNext() {
+        current = (current + 1) % items.length;
+        showItem(current);
+    }
+
+    function showPrev() {
+        current = (current - 1 + items.length) % items.length;
+        showItem(current);
+    }
+</script>
 </body>
 
 </html>

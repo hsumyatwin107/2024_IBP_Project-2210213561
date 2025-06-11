@@ -64,32 +64,11 @@
 
                 <form action="{{url('/update_confirm',$product->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-
-                    <div class="div_design">
-                        <label>Doctor's name</label>
-                        <input class="text_color" type="text" name="title" placeholder="please enter a title" required="" value="{{$product->doctor_name}}">
-                    </div>
-
                     <div class="div_design">
                         <label>Description</label>
                         <input class="text_color" type="text" name="description" placeholder="please enter a description" required="" value="{{$product->description}}">
                     </div >
 
-                    <div class="div_design">
-                        <label>Appointment's Price</label>
-                        <input class="text_color" type="number" name="price" placeholder="please enter a price" required="" value="{{$product->Price}}">
-                    </div>
-
-                    <div class="div_design">
-                        <label>Category</label>
-                        <select class="text_color" name="category">
-                            <option value="{{$product->category}}" selected="">{{$product->category}}</option>
-
-                            @foreach($category as $category)
-                                <option value="{{$category->category_name}}">{{$category->category_name}}</option>
-                            @endforeach
-
-                        </select>
                     </div>
 
                     <div class="add_product">

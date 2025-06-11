@@ -105,5 +105,14 @@
                 <span class="menu-title">Users</span>
             </a>
         </li>
+        {{-- About Section --}}
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ url('show_h_m') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-chart-bar"></i>
+                </span>
+                <span class="menu-title">Edit Section</span>
+            </a>
+        </li>
     </ul>
 </nav>

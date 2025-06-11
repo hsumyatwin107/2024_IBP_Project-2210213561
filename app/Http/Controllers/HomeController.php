@@ -11,6 +11,7 @@ use App\Models\user_m;
 use App\Models\Scholarship;
 use App\Models\AboutSection;
 
+
 class HomeController extends Controller
 {
     public function redirect()
@@ -28,10 +29,10 @@ class HomeController extends Controller
     public function index()
     {
         $scholarships = Scholarship::all();
-        $about = AboutSection::first(); 
+        $aboutsections = AboutSection::all(); 
         $scholarshipNews = ScholarshipNews::latest()->take(5)->get(); 
 
-        return view('home.home', compact('scholarships','about','scholarshipNews'));
+        return view('home.home', compact('scholarships','aboutsections','scholarshipNews'));
     }
 
     public function contact()
@@ -53,14 +54,20 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    public function about()
-    {
-        $about = AboutSection::first(); // Load first record for about section
-        return view('home', compact('about'));
-    }
+//     public function aboutSection()
+// {
+//     $aboutSection = AboutSection::all();
+//     return view('home.about', compact('aboutSection'));
+// }
+// public function edit_h_m($id)
+// {
+//     $aboutSection = AboutSection::find($id);
+//     return view('admin.edit_h_m', compact('aboutSection'));
+// }
 
     public function home()
     {
+        $aboutSections = AboutSection::all(); 
         $socialLinks = [
             'facebook' => 'https://www.facebook.com/your-page',
             'instagram' => 'https://www.instagram.com/your-page',

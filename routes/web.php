@@ -85,13 +85,18 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     Route::get('/scholarships', [StudentController::class, 'showForStudents'])->name('student.scholarships');
 });
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/about-section', [AdminController::class, 'showAboutForm']);
-    Route::post('/admin/about-section', [AdminController::class, 'updateAboutSection'])->name('admin.about.update');
-});
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/scholarship-news', [AdminController::class, 'showScholarshipForm'])->name('admin.scholarship.form');
-    Route::post('/admin/scholarship-news/update', [AdminController::class, 'updateScholarship'])->name('admin.scholarship.update');    
-});
-
+// Route::get('/edit_h_m/{id}', [Controller::class, 'edit_h_m']);
 Route::post('/sendReply/{id}', [MessageController::class, 'sendReply']);
+// Category Management
+Route::get('/category', [AdminController::class, 'category']);
+Route::post('/add_category', [AdminController::class, 'add_category']);
+Route::get('/delete_category/{id}', [AdminController::class, 'delete_category']);
+Route::resource('category', AdminController::class);
+// Section Management
+Route::get('/view_h_m', [AdminController::class, 'view_h_m']);
+Route::get('/add_h_m', [AdminController::class, 'add_h_m']);
+Route::post('/add_h_m', [AdminController::class, 'add_h_m']);
+Route::get('/show_h_m', [AdminController::class, 'show_h_m']);
+Route::get('/delete_section/{id}', [AdminController::class, 'delete_section']);
+Route::get('/edit_h_m/{id}', [AdminController::class, 'edit_h_m']);
+Route::post('/update_confirm/{id}', [AdminController::class, 'update_confirm']);

@@ -10,9 +10,22 @@ use App\Models\user_m;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
+use App\Models\AboutSection; // Import AboutSection model
 
 class AdminController extends Controller
 { 
+    public function index(int $id = null)
+    {
+        $aboutSection = AboutSection::find($id);
+        // If an ID is provided, edit that specific section
+        if ($id) {
+            $aboutSection = AboutSection::findOrFail($id);
+            return view('admin.edit_h_m', compact('aboutSection'));
+        }
+    // e.g., show a list of about sections or a dashboard
+    
+    return view('admin.edit_h_m', compact('aboutSection'));
+}
 
     public function user_messages(){
 
@@ -98,5 +111,94 @@ public function reply_Message(Request $request, $id)
         return redirect()->back();
 
     }
+    public function category(){
 
+        $data = Category::all();
+        return view('admin.category',compact('data'));
+    }
+
+    public function add_category(Request $request){
+
+        $data = new category;
+        $data->category_name = $request->category;
+
+        $data->save();
+
+        return redirect()->back()->with('message','category added successfully');
+    }
+
+    public function delete_category($id){
+
+        $data=Category::find($id);
+
+        $data->delete();
+
+        return redirect()->back()->with('message','category deleted successfully');
+    }
+
+    public function view_h_m(){
+
+        $category = Category::all();
+        return view('admin.h_m',compact('category'));
+    }
+
+    public function add_h_m(Request $request){
+
+        $product = new AboutSection();
+
+        $product->description = $request->description;
+        $image = $request->image;
+        // $imagename = time().'.'.$image->getClientOriginalExtension();
+        // $request->image->move('product',$imagename);
+        $product->image = $image;
+
+        $product->save();
+
+        return redirect()->back()->with('message','The section has been added successfully');
+
+
+    }
+
+    public function show_h_m(){
+
+        $product = AboutSection::all();
+
+        return view('admin.show_h_m',compact('product'));
+    }
+
+    public function delete_section($id){
+
+        $product = AboutSection::find($id);
+
+        $product->delete();
+
+        return redirect()->back()->with('message','The section has been deleted successfully');
+
+    }
+
+    public function edit_h_m($id){
+
+        $product = AboutSection::find($id);
+        $category = Category::all();
+        return view('admin.edit_h_m',compact('product','category'));
+    }
+
+    public function update_confirm(Request $request,$id){
+
+        $product = AboutSection::find($id);
+        $product->description = $request->description;
+        $image = $request->image;
+
+        if ($image) {
+
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('product', $imagename);
+            $product->image = $imagename;
+        }
+
+        $product->save();
+
+        return redirect()->back()->with('message', 'Section has been updated successfully');
+
+    }
 }
