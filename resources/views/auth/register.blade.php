@@ -1,10 +1,55 @@
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<style>
+        body {
+            background-color: #db1f26;
+        }
 
-        <x-validation-errors class="mb-4" />
+        .centered-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 180vh;
+        }
+
+        .custom-card {
+            background-color: rgba(200, 200, 200, 0.4);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .custom-button {
+            background-color: #990000;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #7a0000;
+        }
+
+        .auth-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        label, .text-white, .text-sm {
+            color: white !important;
+        }
+    </style>
+    <div class="centered-wrapper">
+        <div class="custom-card">
+            <div class="auth-logo">
+                <img src="{{ asset('home/images/logo.png') }}" alt="Logo" class="h-16">
+            </div>
+
+            <x-validation-errors class="mb-4 text-white" />
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -108,5 +153,7 @@
                 </x-button>
             </div>
         </form>
-    </x-authentication-card>
+        </div>
+   
+    </div>
 </x-guest-layout>
