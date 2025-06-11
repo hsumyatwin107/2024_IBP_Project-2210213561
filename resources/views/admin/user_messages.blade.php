@@ -5,12 +5,13 @@
 
         table,th,td {
             border: 1px solid navajowhite;
+           
         }
         .order_dis{
 
             text-align: center;
-            font-size: 30px;
-            padding-bottom: 30px;
+            font-size: 15px;
+            padding-bottom: 20px;
         }
 
         .table_des{
@@ -64,7 +65,7 @@
             <td>{{ $item->phone }}</td>
             <td>{{ $item->user_message }}</td>
             <td>
-                <form method="POST" action="{{ url('reply_message/' . $item->id) }}">
+                <form method="POST" action="{{ url('sendReply/' . $item->id) }}">
                     @csrf
                     <input type="text" name="reply" placeholder="Enter reply" value="{{ $item->reply }}" />
                     <button type="submit" class="btn btn-primary btn-sm">Send</button>

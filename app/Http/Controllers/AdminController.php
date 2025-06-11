@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\ContactMessages;
+use App\Models\ContactMessage;
 use App\Models\Hospital_sec;
 use App\Models\User;
 use App\Models\user_m;
@@ -20,11 +20,11 @@ class AdminController extends Controller
         $messages = collect([]); // Empty collection for now
         if (auth()->user()->usertype == '1') {
             // Admin sees all messages
-            $messages = contactMessages::latest()->get();
+            $messages = contactMessage::latest()->get();
             return view('admin.user_messages', compact('message')); // Admin view
         } else {
             // Student sees only their own messages
-            $messages = contactMessages::where('user_id', auth()->id())->latest()->get();
+            $messages = contactMessage::where('user_id', auth()->id())->latest()->get();
             return view('student.message', compact('messages')); // Student view
         }
         // return view('admin.user_messages',compact('message'));
@@ -73,7 +73,7 @@ class AdminController extends Controller
 }
 public function reply_Message(Request $request, $id)
 {
-    $message = ContactMessages::find($id);
+    $message = ContactMessage::find($id);
 
     if (!$message) {
         return redirect()->back()->with('error', 'Message not found.');

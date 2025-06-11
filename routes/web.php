@@ -62,7 +62,7 @@ Route::get('/admin/applications', [AdminController::class, 'viewApplications'])-
 
 Route::get('/user_messages', [AdminController::class, 'user_messages']);
 Route::get('/delete_message/{id}', [AdminController::class, 'delete_message']);
-Route::post('/reply_message/{id}', [AdminController::class, 'reply_Message']);
+// Route::post(uri: '/reply_message/{id}', [AdminController::class, 'reply_Message']);
 
 Route::get('/users', [AdminController::class, 'users']);
 Route::get('/delete_user/{id}', [AdminController::class, 'delete_user']);
@@ -93,3 +93,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/scholarship-news', [AdminController::class, 'showScholarshipForm'])->name('admin.scholarship.form');
     Route::post('/admin/scholarship-news/update', [AdminController::class, 'updateScholarship'])->name('admin.scholarship.update');    
 });
+
+Route::post('/sendReply/{id}', [MessageController::class, 'sendReply']);

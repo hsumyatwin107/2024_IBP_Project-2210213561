@@ -17,7 +17,7 @@
             padding: 8px;
         }
         th {
-            background-color: black;
+            background-color: #0c5460;
         }
         h1 {
             padding-top: 3%;

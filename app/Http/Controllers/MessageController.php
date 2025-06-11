@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ContactMessages; // Import the Message model
+use App\Models\ContactMessage; // Import the Message model
 use App\Models\UserMessage; // Import the UserMessage model
+use App\Mail\StudentReplyMail; // Import the StudentReplyMail class
+use Illuminate\Support\Facades\Mail; // Import the Mail facade
 
 
 class MessageController extends Controller
@@ -17,11 +19,11 @@ class MessageController extends Controller
         $messages = collect([]); // Empty collection for now
         if (auth()->user()->usertype == '1') {
             // Admin sees all messages
-            $messages = contactMessages::latest()->get();
+            $messages = contactMessage::latest()->get();
             return view('admin.message', compact('messages')); // Admin view
         } else {
             // Student sees only their own messages
-            $messages = contactMessages::where('user_id', auth()->id())->latest()->get();
+            $messages = contactMessage::where('user_id', auth()->id())->latest()->get();
             return view('student.message', compact('messages')); // Student view
         }
     }
@@ -33,6 +35,24 @@ class MessageController extends Controller
     {
         //
     }
+    public function sendReply(Request $request, $id)
+{
+    $request->validate([
+        'reply_message' => 'required|string|max:1000',
+    ]);
+
+    $message = ContactMessage::findOrFail($id);
+    $studentEmail = $message->email;
+
+    // Save reply to DB
+    $message->reply = $request->input('reply_message');
+    $message->save();
+
+    // Send email
+    Mail::to($studentEmail)->send(new StudentReplyMail($request->input('reply_message')));
+
+    return back()->with('success', 'Reply sent and saved successfully.');
+}
 
     /**
      * Store a newly created resource in storage.
@@ -77,7 +97,7 @@ class MessageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(contactmessages $message)
+    public function show(contactmessage $message)
     {
         //
     }
@@ -85,21 +105,21 @@ class MessageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(contactmessages $message)
+    public function edit(contactmessage $message)
     {
         //
     }
     public function viewMessages()
 {
     $studentId = auth()->id(); // or however you're identifying the student
-    $messages = ContactMessages::where('student_id', $studentId)->get();
+    $messages = ContactMessage::where('student_id', $studentId)->get();
     return view('student.message', compact('messages'));
 }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, contactmessages $message)
+    public function update(Request $request, contactmessage $message)
     {
         //
     }
@@ -107,7 +127,7 @@ class MessageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(contactmessages $message)
+    public function destroy(contactmessage $message)
     {
         //
     }
