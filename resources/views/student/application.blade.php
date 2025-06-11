@@ -8,7 +8,7 @@
 
         .order_dis {
             text-align: center;
-            font-size: 30px;
+            font-size: 18px;
             padding-bottom: 30px;
         }
 

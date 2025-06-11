@@ -306,6 +306,55 @@
                 padding: 4px 8px; /* Adjust padding */
             }
         }
+            .scholarship-section {
+                background-color: #0f0f0f;
+                color: #ffffff;
+                padding: 80px 20px;
+            }
+
+            .section-title {
+                text-align: center;
+                font-size: 36px;
+                color: #0c5460;
+                margin-bottom: 40px;
+                font-weight: bold;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .scholarship-table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: #1a1a1a;
+                color: #ffffff;
+                border-radius: 12px;
+                overflow: hidden;
+            }
+
+            .scholarship-table th,
+            .scholarship-table td {
+                padding: 16px 20px;
+                text-align: left;
+                border-bottom: 1px solid #333;
+            }
+
+            .scholarship-table th {
+                background-color: #0c5460;
+                font-weight: 600;
+                color: white;
+            }
+
+            .scholarship-table tr:hover {
+                background-color: #2a2a2a;
+            }
+
+            .scholarship-table td {
+                color: #e0e0e0;
+                font-size: 15px;
+            }
+
     </style>
 </head>
 
@@ -375,19 +424,39 @@
     </div>
 </section>
 
-<section id="scholarship" class="scholarship" style="background-color: #000; color: white; padding: 40px 20px;">
-    <h2>Scholarship Announcements</h2>
-    
-    <ul>
-        @foreach($scholarshipNews as $news)
-            <li style="margin-bottom: 15px;">
-                <strong>{{ $news->title }}</strong><br>
-                <span>{{ $news->description }}</span>
-            </li>
-        @endforeach
-    </ul>
+<section id="scholarship" class="scholarship-section">
+    <div class="container">
+        <h2 class="section-title">{{ __('messages.scholarship') }}</h2>
+        <div class="table-container">
+            <table class="scholarship-table">
+                <thead>
+                    <tr>
+                        <th>Scholarship Name</th>
+                        <th>Deadline</th>
+                        <th>Eligibility</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($scholarships as $scholarship)
+                        <tr>
+                            <td>{{ $scholarship->name }}</td>
+                            <td>{{ \Carbon\Carbon::parse($scholarship->deadline)->format('F d, Y') }}</td>
+                            <td>{{ $scholarship->eligibility }}</td>
+                            <td>
+                                <a href="{{ route('register', ['redirect' => 'apply', 'scholarship_id' => $scholarship->id]) }}"
+                                onclick="alert('You need to register to apply.')" 
+                                class="btn btn-primary">
+                                    Apply
+                                </a>    
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </section>
-
 
     <!-- Contact Us Section as Footer -->
     <section id="contact" class="contact">

@@ -83,6 +83,9 @@
                     <thead>
                         <tr>
                             <th>Student Name</th>
+                            <th>Father Name</th>
+                            <th>Date of Birth</th>
+                            <th>residence_permit_number</th>
                             <th>Scholarship</th>
                             <th>Status</th>
                             <th>Actions</th>
@@ -92,6 +95,9 @@
                         @foreach($applications as $application)
                         <tr>
                             <td>{{ $application->user->name }}</td>
+                            <td>{{ $application->user->father_name }}</td>
+                            <td>{{ $application->user->date_of_birth }}</td>
+                            <td>{{ $application->user->residence_permit_number }}</td>
                             <td>{{ $application->scholarship->name }}</td>
                             <td style="text-transform: capitalize;">{{ $application->status }}</td>
                             <td>

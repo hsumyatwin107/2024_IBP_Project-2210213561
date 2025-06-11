@@ -9,7 +9,7 @@
 
         .order_dis {
             text-align: center;
-            font-size: 30px;
+            font-size: 18px;
             padding-bottom: 30px;
         }
 
@@ -64,6 +64,7 @@
                         <tr class="th_des">
                             <th>Scholarship Name</th>
                             <th>Description</th>
+                            <th>eligibility</th>
                             <th>Deadline</th>
                             <th>Action</th>
                         </tr>
@@ -73,6 +74,7 @@
                             <tr>
                                 <td>{{ $scholarship->name }}</td>
                                 <td>{{ $scholarship->description }}</td>
+                                <td>{{ $scholarship->eligibility }}</td>
                                 <td>{{ $scholarship->deadline }}</td>
                                 <td>
                                     @if (in_array($scholarship->id, $appliedScholarshipIds))
