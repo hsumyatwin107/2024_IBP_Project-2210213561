@@ -33,35 +33,40 @@ class HomeController extends Controller
     public function index()
     {
         $scholarships = Scholarship::all();
-        $aboutsections = AboutSection::all(); 
+        $aboutSections = AboutSection::all(); 
         // $scholarshipNews = ScholarshipNews::latest()->take(5)->get(); 
 
-        return view('home.home', compact('scholarships','aboutsections'));
+        return view('home.home', compact('scholarships','aboutSections'));
     }
 
     public function contact()
     {
         return view('home.contact');
     }
-
-    public function user_message(Request $request)
+    public function show_about_section()
     {
-        $user_message = new user_m();
-
-        $user_message->name = $request->name;
-        $user_message->email = $request->email;
-        $user_message->phone = $request->phone;
-        $user_message->user_message = $request->message;
-
-        $user_message->save();
-
-        return redirect()->back();
+        $aboutSections = AboutSection::all(); 
+        return view('home.home', compact('aboutSections'));
     }
-    public function showAbout()
-{
-    $aboutSections = AboutSection::all(); // Or whatever your model is
-    return view('home.home', compact('aboutSections'));
-}
+
+    // public function user_message(Request $request)
+    // {
+    //     $user_message = new user_m();
+
+    //     $user_message->name = $request->name;
+    //     $user_message->email = $request->email;
+    //     $user_message->phone = $request->phone;
+    //     $user_message->user_message = $request->message;
+
+    //     $user_message->save();
+
+    //     return redirect()->back();
+    // }
+//     public function showAbout()
+// {
+//     $aboutSections = AboutSection::all(); 
+//     return view('home.home', compact('aboutSections'));
+// }
 
 //     public function aboutSection()
 // {

@@ -64,13 +64,13 @@
             </a>
         </li>
 
-        {{-- Messages --}}
+        <!-- {{-- Messages --}}
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('message') }}">
                 <span class="menu-icon"><i class="mdi mdi-message"></i></span>
                 <span class="menu-title">Messages</span>
             </a>
-        </li>
+        </li> -->
 
         {{-- Edit Profile (optional) --}}
         

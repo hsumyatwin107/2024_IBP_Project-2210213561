@@ -354,6 +354,51 @@
                 color: #e0e0e0;
                 font-size: 15px;
             }
+            /* About section image styling */
+            .about-item img {
+                max-width: 800px;       
+                max-height: 500px;      
+                border-radius: 15px;    
+                border: 3px solid #0c5460;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+                object-fit: cover;
+                display: block;
+                margin: 0 auto;         
+            }
+            #about {
+            background-color: black !important;
+            color: white; 
+            position: relative; 
+            }
+            /* Navigation buttons container - centered vertically */
+            .about-navigation {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 20px;
+                transform: translateY(-50%);
+                z-index: 10;
+            }
+
+            /* Buttons style */
+            .about-navigation button {
+                background-color: rgba(12, 84, 96, 0.8);
+                border: none;
+                color: white;
+                font-size: 2rem;
+                padding: 8px 16px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .about-navigation button:hover {
+                background-color: #094a53;
+            }
+
 
     </style>
 </head>
@@ -413,26 +458,25 @@
         </div>
     </div>
 
-    <section id="about" class="about bg-black text-white py-10 px-5">
-    <h2 class="text-center text-3xl font-semibold mb-8">About Us</h2>
-
+    <section id="about" class="about bg-black text-white py-10 px-5 min-h-[60vh]">
     <div class="relative max-w-3xl mx-auto">
-        @if (isset($aboutSections) && count($aboutSections))
-            @foreach ($aboutSections as $index => $aboutSection)
-                <div class="about-item text-center transition-all duration-500" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
-                <img src="{{ asset('storage/about/' . $aboutSection->photo) }}">
-                <p class="mt-4 text-lg">{{ $aboutSection->description }}</p>
-                </div>
-            @endforeach
-        @endif
-
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between items-center absolute top-1/2 left-0 right-0 px-4 transform -translate-y-1/2 z-10">
-            <button onclick="showPrev()" class="text-white text-3xl bg-gray-800 bg-opacity-70 px-3 py-1 rounded-full hover:bg-opacity-90">&#8592;</button>
-            <button onclick="showNext()" class="text-white text-3xl bg-gray-800 bg-opacity-70 px-3 py-1 rounded-full hover:bg-opacity-90">&#8594;</button>
+    @foreach ($aboutSections as $index => $aboutSection)
+        <div class="about-item text-center transition-all duration-500" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
+            <img src="{{ asset('product/' . $aboutSection->image) }}" alt="About Image">
+            <p class="mt-4 text-lg">{{ $aboutSection->description }}</p>
         </div>
+    @endforeach
+
+    <!-- Navigation Buttons -->
+    <div class="about-navigation">
+        <button onclick="showPrev()">&#8592;</button>
+        <button onclick="showNext()">&#8594;</button>
     </div>
+</div>
+
+
 </section>
+
 
 <section id="scholarship" class="scholarship-section">
     <div class="container">
@@ -494,41 +538,25 @@
         function closeMenu() {
             document.getElementById('menu-toggle').checked = false;
         }
-    
-    let current = 0;
-    const items = document.querySelectorAll('.about-item');
 
-    function showItem(index) {
-        items.forEach((el, i) => el.style.display = i === index ? 'block' : 'none');
-    }
 
-    function showNext() {
-        current = (current + 1) % items.length;
-        showItem(current);
-    }
+        let currentIndex = 0;
+    const aboutItems = document.querySelectorAll('.about-item');
 
-    function showPrev() {
-        current = (current - 1 + items.length) % items.length;
-        showItem(current);
-    }
-    let current = 0;
-    const items = document.querySelectorAll('.about-item');
-    const total = items.length;
-
-    function showItem(index) {
-        items.forEach((item, i) => {
+    function showAbout(index) {
+        aboutItems.forEach((item, i) => {
             item.style.display = (i === index) ? 'block' : 'none';
         });
     }
 
-    function showNext() {
-        current = (current + 1) % total;
-        showItem(current);
+    function showPrev() {
+        currentIndex = (currentIndex === 0) ? aboutItems.length - 1 : currentIndex - 1;
+        showAbout(currentIndex);
     }
 
-    function showPrev() {
-        current = (current - 1 + total) % total;
-        showItem(current);
+    function showNext() {
+        currentIndex = (currentIndex === aboutItems.length - 1) ? 0 : currentIndex + 1;
+        showAbout(currentIndex);
     }
 </script>
 </body>

@@ -16,11 +16,7 @@ use Illuminate\Http\Request;
 
 Route::get('/contact', [MessageController::class, 'showContactForm']);
 Route::post('/user_message', [MessageController::class, 'store']);
-// Route::middleware(['auth', 'verified'])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
+
 // Notice Route
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -110,10 +106,6 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     Route::get('/scholarships', [StudentController::class, 'showForStudents'])->name('student.scholarships');
 });
-// // Route::get('/edit_h_m/{id}', [Controller::class, 'edit_h_m']);
-// Route::post('/sendReply/{id}', [AdminController::class, 'reply_message'])->name('message.reply');
-// // routes/web.php
-// //Route::post('/message/reply/{id}', [MessageController::class, 'sendReply']);
 
 // Category Management
 Route::get('/category', [AdminController::class, 'category']);

@@ -86,7 +86,7 @@
             </a>
         </li>
 
-        {{-- User Messages --}}
+        <!-- {{-- User Messages --}}
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('user_messages') }}">
                 <span class="menu-icon">
@@ -94,7 +94,7 @@
                 </span>
                 <span class="menu-title">User Messages</span>
             </a>
-        </li>
+        </li> -->
 
         {{-- Users --}}
         <li class="nav-item menu-items">
