@@ -3,6 +3,7 @@
 use App\Models\ContactMessages;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\StudentController;
@@ -11,10 +12,32 @@ use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 
+use Illuminate\Http\Request;
+
 Route::get('/contact', [MessageController::class, 'showContactForm']);
 Route::post('/user_message', [MessageController::class, 'store']);
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+// Notice Route
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
-// Home + Redirect + Contact
+// Verification Route
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill(); // Marks the user as verified
+    return redirect('/'); 
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+//Resend Email Route
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+ // Home + Redirect + Contact
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/redirect', [HomeController::class, 'redirect']);
 Route::get('/contact', [HomeController::class, 'contact']);
@@ -36,7 +59,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
 });
 
 // STUDENT Routes
-Route::get('/student', [StudentController::class, 'index'])->name('student.home');
+Route::get('/student', [StudentController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('student.home');
 Route::resource('messages', MessageController::class);
 
 Route::get('/message', [MessageController::class, 'index'])->name('student.message');
@@ -85,8 +110,11 @@ Route::middleware(['auth', 'student'])->group(function () {
 
     Route::get('/scholarships', [StudentController::class, 'showForStudents'])->name('student.scholarships');
 });
-// Route::get('/edit_h_m/{id}', [Controller::class, 'edit_h_m']);
-Route::post('/sendReply/{id}', [MessageController::class, 'sendReply']);
+// // Route::get('/edit_h_m/{id}', [Controller::class, 'edit_h_m']);
+// Route::post('/sendReply/{id}', [AdminController::class, 'reply_message'])->name('message.reply');
+// // routes/web.php
+// //Route::post('/message/reply/{id}', [MessageController::class, 'sendReply']);
+
 // Category Management
 Route::get('/category', [AdminController::class, 'category']);
 Route::post('/add_category', [AdminController::class, 'add_category']);

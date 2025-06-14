@@ -413,29 +413,25 @@
         </div>
     </div>
 
-    <section id="about" class="about" style="background-color: #000; color: white; padding: 40px 20px;">
-    <h2>About Us</h2>
-    <div class="bg-black text-white min-h-screen flex flex-col items-center justify-center p-4">
-    <div class="relative w-full max-w-md">
-        <div id="photo-frame" class="flex flex-col items-center transition-all duration-500">
+    <section id="about" class="about bg-black text-white py-10 px-5">
+    <h2 class="text-center text-3xl font-semibold mb-8">About Us</h2>
+
+    <div class="relative max-w-3xl mx-auto">
         @if (isset($aboutSections) && count($aboutSections))
-    @foreach ($aboutSections as $index => $aboutSection)
-        <div class="about-item" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
-            <img src="{{ asset('storage/' . $aboutSection->photo) }}" alt="Photo" class="w-64 h-64 object-cover rounded shadow-lg">
-            <h2 class="mt-4 text-xl font-semibold">{{ $aboutSection->label }}</h2>
-            <p class="mt-2 text-sm">{{ $aboutSection->contact }}</p>
-        </div>
-    @endforeach
-@endif
-        </div>
-        
-        <div class="flex justify-between w-full absolute top-1/2 transform -translate-y-1/2">
-            <button onclick="showPrev()" class="text-white text-2xl px-4">&#8592;</button>
-            <button onclick="showNext()" class="text-white text-2xl px-4">&#8594;</button>
+            @foreach ($aboutSections as $index => $aboutSection)
+                <div class="about-item text-center transition-all duration-500" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
+                <img src="{{ asset('storage/about/' . $aboutSection->photo) }}">
+                <p class="mt-4 text-lg">{{ $aboutSection->description }}</p>
+                </div>
+            @endforeach
+        @endif
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between items-center absolute top-1/2 left-0 right-0 px-4 transform -translate-y-1/2 z-10">
+            <button onclick="showPrev()" class="text-white text-3xl bg-gray-800 bg-opacity-70 px-3 py-1 rounded-full hover:bg-opacity-90">&#8592;</button>
+            <button onclick="showNext()" class="text-white text-3xl bg-gray-800 bg-opacity-70 px-3 py-1 rounded-full hover:bg-opacity-90">&#8594;</button>
         </div>
     </div>
-</div>
-
 </section>
 
 <section id="scholarship" class="scholarship-section">
@@ -513,6 +509,25 @@
 
     function showPrev() {
         current = (current - 1 + items.length) % items.length;
+        showItem(current);
+    }
+    let current = 0;
+    const items = document.querySelectorAll('.about-item');
+    const total = items.length;
+
+    function showItem(index) {
+        items.forEach((item, i) => {
+            item.style.display = (i === index) ? 'block' : 'none';
+        });
+    }
+
+    function showNext() {
+        current = (current + 1) % total;
+        showItem(current);
+    }
+
+    function showPrev() {
+        current = (current - 1 + total) % total;
         showItem(current);
     }
 </script>

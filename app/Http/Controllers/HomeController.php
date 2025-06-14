@@ -17,7 +17,11 @@ class HomeController extends Controller
     public function redirect()
     {
         $usertype = Auth::user()->usertype;
+        $user = Auth::user();
 
+    if (!$user->hasVerifiedEmail()) {
+        return redirect()->route('verification.notice');
+    }
         if ($usertype == '1') {
             return view('admin.home');
         } else {
@@ -30,9 +34,9 @@ class HomeController extends Controller
     {
         $scholarships = Scholarship::all();
         $aboutsections = AboutSection::all(); 
-        $scholarshipNews = ScholarshipNews::latest()->take(5)->get(); 
+        // $scholarshipNews = ScholarshipNews::latest()->take(5)->get(); 
 
-        return view('home.home', compact('scholarships','aboutsections','scholarshipNews'));
+        return view('home.home', compact('scholarships','aboutsections'));
     }
 
     public function contact()
@@ -53,6 +57,11 @@ class HomeController extends Controller
 
         return redirect()->back();
     }
+    public function showAbout()
+{
+    $aboutSections = AboutSection::all(); // Or whatever your model is
+    return view('home.home', compact('aboutSections'));
+}
 
 //     public function aboutSection()
 // {

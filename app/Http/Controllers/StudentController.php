@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use App\Models\Scholarship;
 use App\Models\Application;
@@ -17,7 +18,7 @@ class StudentController extends Controller
     public function showMessages()
 {
     $userId = auth()->id(); // Assuming user is logged in
-    $messages = ContactMessages::where('user_id', $userId)->get();
+    $messages = ContactMessage::where('user_id', $userId)->get();
     return view('student.message', compact('messages'));
 }
 public function showForStudents()

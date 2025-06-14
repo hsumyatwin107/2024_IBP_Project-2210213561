@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
 use App\Models\AboutSection; // Import AboutSection model
+use App\Mail\StudentReplyMail; // Import StudentReplyMail class
+use Illuminate\Support\Facades\Mail; // Import Mail facade
+use Illuminate\Support\Facades\Log; // Import Log facade
 
 class AdminController extends Controller
 { 
@@ -84,7 +87,7 @@ class AdminController extends Controller
 
     return redirect()->back()->with('success', 'Status updated successfully!');
 }
-public function reply_Message(Request $request, $id)
+public function reply_message(Request $request, $id)
 {
     $message = ContactMessage::find($id);
 
@@ -94,8 +97,16 @@ public function reply_Message(Request $request, $id)
 
     $message->reply = $request->reply;
     $message->save();
+    Log::info('Sending email to: ' . $message->email);
+    // Attempt to send the email
+    try {
+        Mail::to($message->email)->send(new StudentReplyMail($request->reply));
+    } catch (\Exception $e){
+        Log::error('Mail sending failed: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Mail sending failed: ' . $e->getMessage());
+    }
+    return redirect()->back()->with('success', 'Reply sent and email delivered.');
 
-    return redirect()->back()->with('message', 'Reply sent successfully!');
 }
 
 
@@ -142,22 +153,22 @@ public function reply_Message(Request $request, $id)
         return view('admin.h_m',compact('category'));
     }
 
-    public function add_h_m(Request $request){
+    public function add_h_m(Request $request)
+{
+    $product = new AboutSection();
 
-        $product = new AboutSection();
+    $product->description = $request->description;
 
-        $product->description = $request->description;
-        $image = $request->image;
-        // $imagename = time().'.'.$image->getClientOriginalExtension();
-        // $request->image->move('product',$imagename);
+    if ($request->hasFile('image')) {
+        $image = $request->file('image')->store('storage.about', 'public');
         $product->image = $image;
-
-        $product->save();
-
-        return redirect()->back()->with('message','The section has been added successfully');
-
-
     }
+
+    $product->save();
+
+    return redirect()->back()->with('message','The section has been added successfully');
+}
+
 
     public function show_h_m(){
 

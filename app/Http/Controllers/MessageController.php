@@ -35,24 +35,24 @@ class MessageController extends Controller
     {
         //
     }
-    public function sendReply(Request $request, $id)
-{
-    $request->validate([
-        'reply_message' => 'required|string|max:1000',
-    ]);
+//     public function sendReply(Request $request, $id)
+// {
+//     $request->validate([
+//         'reply_message' => 'required|string|max:1000',
+//     ]);
 
-    $message = ContactMessage::findOrFail($id);
-    $studentEmail = $message->email;
+//     $message = ContactMessage::findOrFail($id);
+//     $studentEmail = $message->email;
 
-    // Save reply to DB
-    $message->reply = $request->input('reply_message');
-    $message->save();
+//     // Save reply to DB
+//     $message->reply = $request->input('reply_message');
+//     $message->save();
 
-    // Send email
-    Mail::to($studentEmail)->send(new StudentReplyMail($request->input('reply_message')));
+//     // Send email
+//     Mail::to($studentEmail)->send(new StudentReplyMail($request->input('reply_message')));
 
-    return back()->with('success', 'Reply sent and saved successfully.');
-}
+//     return back()->with('success', 'Reply sent and saved successfully.');
+// }
 
     /**
      * Store a newly created resource in storage.

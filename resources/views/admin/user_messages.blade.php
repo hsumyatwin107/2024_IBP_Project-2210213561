@@ -65,11 +65,13 @@
             <td>{{ $item->phone }}</td>
             <td>{{ $item->user_message }}</td>
             <td>
-                <form method="POST" action="{{ url('sendReply/' . $item->id) }}">
-                    @csrf
-                    <input type="text" name="reply" placeholder="Enter reply" value="{{ $item->reply }}" />
-                    <button type="submit" class="btn btn-primary btn-sm">Send</button>
-                </form>
+            <form method="POST" action="{{ url('sendReply/' . $item->id) }}">
+                @csrf
+                <input type="text" name="reply" placeholder="Enter reply" value="{{ $item->reply }}" />
+                <button type="submit" class="btn btn-primary btn-sm">Send</button>
+            </form>
+
+
             </td>
             <td>
                 <a href="{{ url('delete_message', $item->id) }}" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
