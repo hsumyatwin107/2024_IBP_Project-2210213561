@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="{{ url('/') }}"><img src="/assets/images/logo.svg" alt="Project" /></a>
-        <a class="sidebar-brand brand-logo-mini" href="{{ url('/') }}"><img src="/assets/images/logo-mini.svg" alt="logo" /></a>
+        <!-- <a class="sidebar-brand brand-logo" href="{{ url('/') }}"><img src="/assets/images/logo.svg" alt="Project" /></a> -->
+        <!-- <a class="sidebar-brand brand-logo-mini" href="{{ url('/') }}"><img src="/assets/images/logo-mini.svg" alt="logo" /></a> -->
     </div>
 
     <ul class="nav">
@@ -9,7 +9,7 @@
             <div class="profile-desc">
                 <div class="profile-pic">
                     <div class="count-indicator">
-                        <img class="img-xs rounded-circle" src="{{ asset('/') }}" alt="Profile">
+                        <!-- <img class="img-xs rounded-circle" src="{{ asset('/') }}" alt="Profile"> -->
                         <span class="count bg-success"></span>
                     </div>
                     <div class="profile-name">
