@@ -31,7 +31,11 @@
                     </div>
                 </header>
             @endif
-
+            <select onchange="window.location.href='/lang/' + this.value;">
+                <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
+                <option value="tr" {{ app()->getLocale() == 'tr' ? 'selected' : '' }}>Türkçe</option>
+                <option value="ar" {{ app()->getLocale() == 'ar' ? 'selected' : '' }}>العربية</option>
+            </select>
             <!-- Page Content -->
             <main>
                 {{ $slot }}

@@ -18,5 +18,6 @@
     @include('admin.js')
     <!-- End custom js for this page -->
 </div>
+
 </body>
 </html>

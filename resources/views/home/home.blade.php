@@ -426,11 +426,11 @@
                 @endauth
                 @endif
             </ul>
-            <div class="language-switcher">
-            <a href="{{ route('lang.switch', ['lang' => 'en']) }}" class="lang-btn" title="English">EN</a>
-            <a href="{{ route('lang.switch', ['lang' => 'tr']) }}" class="lang-btn" title="Türkçe">TR</a>
-            <a href="{{ route('lang.switch', ['lang' => 'ar']) }}" class="lang-btn" title="العربية">AR</a>
-        </div>
+            <div class="language-switch">
+                <a href="{{ url('lang/en') }}">EN</a>
+                <a href="{{ url('lang/tr') }}">TR</a>
+                <a href="{{ url('lang/ar') }}">AR</a>
+            </div>
         </nav>
 
         <div id="menu">
@@ -452,31 +452,28 @@
     </header>
 
     <div class="hero" id="home">
-        <div class="hero-content">
-            <h1>Welcome to Our Platform</h1>
-            <a href="#about">Explore</a>
-        </div>
-    </div>
-
-    <section id="about" class="about bg-black text-white py-10 px-5 min-h-[60vh]">
-    <div class="relative max-w-3xl mx-auto">
-    @foreach ($aboutSections as $index => $aboutSection)
-        <div class="about-item text-center transition-all duration-500" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
-            <img src="{{ asset('product/' . $aboutSection->image) }}" alt="About Image">
-            <p class="mt-4 text-lg">{{ $aboutSection->description }}</p>
-        </div>
-    @endforeach
-
-    <!-- Navigation Buttons -->
-    <div class="about-navigation">
-        <button onclick="showPrev()">&#8592;</button>
-        <button onclick="showNext()">&#8594;</button>
+    <div class="hero-content">
+        <h1>{{ __('messages.welcome_title') }}</h1>
+        <a href="#about">{{ __('messages.explore') }}</a>
     </div>
 </div>
 
+<section id="about" class="about bg-black text-white py-10 px-5 min-h-[60vh]">
+    <div class="relative max-w-3xl mx-auto">
+        @foreach ($aboutSections as $index => $aboutSection)
+            <div class="about-item text-center transition-all duration-500" data-index="{{ $index }}" style="{{ $index !== 0 ? 'display:none;' : '' }}">
+                <img src="{{ asset('product/' . $aboutSection->image) }}" alt="{{ __('messages.about_image_alt') }}">
+                <p class="mt-4" style="color: #0c5460; font-size: 30px;">{{ $aboutSection->description }}</p>
+            </div>
+        @endforeach
 
+        <!-- Navigation Buttons -->
+        <div class="about-navigation">
+            <button onclick="showPrev()">&#8592;</button>
+            <button onclick="showNext()">&#8594;</button>
+        </div>
+    </div>
 </section>
-
 
 <section id="scholarship" class="scholarship-section">
     <div class="container">
@@ -485,10 +482,10 @@
             <table class="scholarship-table">
                 <thead>
                     <tr>
-                        <th>Scholarship Name</th>
-                        <th>Deadline</th>
-                        <th>Eligibility</th>
-                        <th>Action</th>
+                        <th>{{ __('messages.scholarship_name') }}</th>
+                        <th>{{ __('messages.deadline') }}</th>
+                        <th>{{ __('messages.eligibility') }}</th>
+                        <th>{{ __('messages.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -499,9 +496,9 @@
                             <td>{{ $scholarship->eligibility }}</td>
                             <td>
                                 <a href="{{ route('register', ['redirect' => 'apply', 'scholarship_id' => $scholarship->id]) }}"
-                                onclick="alert('You need to register to apply.')" 
-                                class="btn btn-primary">
-                                    Apply
+                                   onclick="alert('{{ __('messages.register_to_apply') }}')" 
+                                   class="btn btn-primary">
+                                    {{ __('messages.apply') }}
                                 </a>    
                             </td>
                         </tr>
@@ -512,27 +509,28 @@
     </div>
 </section>
 
-    <!-- Contact Us Section as Footer -->
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <p>If you have any questions or need assistance, feel free to contact us.</p>
+<!-- Contact Us Section as Footer -->
+<section id="contact" class="contact">
+    <h2>{{ __('messages.contact_us') }}</h2>
+    <p>{{ __('messages.contact_text') }}</p>
 
     <!-- Social Media Icons -->
     <div class="social-icons">
         <a href="mailto:kurumsal@arakan.org.tr" target="_blank" class="social-icon">
-            <i class="fas fa-envelope"></i> <!-- Email Icon -->
+            <i class="fas fa-envelope"></i>
         </a>
         <a href="https://www.instagram.com/arakandernek?igsh=bjN1aDA1Z2swbXVn" target="_blank" class="social-icon">
-            <i class="fab fa-instagram"></i> <!-- Instagram Icon -->
+            <i class="fab fa-instagram"></i>
         </a>
         <a href="https://www.facebook.com/yourprofile" target="_blank" class="social-icon">
-            <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
+            <i class="fab fa-facebook"></i>
         </a>
         <a href="https://youtube.com/@arakandernek?si=xK3J_-idLTB5xYqs" target="_blank" class="social-icon">
-            <i class="fab fa-youtube"></i> <!-- YouTube Icon -->
+            <i class="fab fa-youtube"></i>
         </a>
     </div>
-    </section>
+</section>
+
 
     <script>
         function closeMenu() {

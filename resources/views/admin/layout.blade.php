@@ -7,7 +7,7 @@
     @include('admin.css')  {{-- Your CSS file --}}
 </head>
 <body>
-    <div class="container-scroller">
+ <div class="container-scroller">
         @include('admin.slider')  {{-- Sidebar --}}
         <div class="main-panel">
             @include('admin.header')  {{-- Header/topbar --}}

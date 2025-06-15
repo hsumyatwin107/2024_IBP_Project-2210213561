@@ -13,7 +13,7 @@
                     </div>
                     <div class="profile-name">
                         <h5 class="mb-0 font-weight-normal">Hsu Myat Win</h5>
-                        <span>Student</span>
+                        <span>Admin</span>
                     </div>
                 </div>
                 <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
@@ -61,7 +61,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">{{ __('dashboard') }}</span>
             </a>
         </li>
 
@@ -71,7 +71,7 @@
         <span class="menu-icon">
             <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">Scholarship</span>
+        <span class="menu-title">{{_('scholarship') }}</span>
     </a>
 </li>
 
@@ -82,7 +82,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
-                <span class="menu-title">Application</span>
+                <span class="menu-title">{{_('application') }}</span>
             </a>
         </li>
 
@@ -102,7 +102,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-chart-bar"></i>
                 </span>
-                <span class="menu-title">Users</span>
+                <span class="menu-title">{{_('users') }}</span>
             </a>
         </li>
         {{-- About Section --}}
@@ -111,7 +111,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-chart-bar"></i>
                 </span>
-                <span class="menu-title">Edit Section</span>
+                <span class="menu-title">{{_('edit_section') }}</span>
             </a>
         </li>
     </ul>

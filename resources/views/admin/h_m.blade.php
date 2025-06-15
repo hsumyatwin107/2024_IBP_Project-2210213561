@@ -33,7 +33,6 @@
 <div class="container-scroller">
     <!-- partial:partials/_sidebar.html -->
 
-
     @include('admin.slider')
     <!-- partial -->
     @include('admin.header')

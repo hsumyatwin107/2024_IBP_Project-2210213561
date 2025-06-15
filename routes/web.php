@@ -41,13 +41,20 @@ Route::post('/user_message', [HomeController::class, 'user_message']);
 Route::get('/search_data', [HomeController::class, 'search_data']);
 
 // Language Switch
-Route::get('lang/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'tr', 'ar'])) {
-        App::setLocale($lang);
-        session(['locale' => $lang]);
+// Route::get('/lang/{locale}', function ($locale) {
+//     if (in_array($locale, ['en', 'ar', 'tr'])) {
+//         App::setLocale($locale);
+//         session(['locale' => $locale]);
+//     }
+//     return redirect()->back();
+// });
+
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ar', 'tr'])) {
+        session(['locale' => $locale]);
     }
     return redirect()->back();
-})->name('lang.switch');
+});
 
 // Dashboard (Jetstream)
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
