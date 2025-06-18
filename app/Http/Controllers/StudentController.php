@@ -52,14 +52,14 @@ public function showForStudents()
         ]);
 
         // Save uploaded CV
-        $cvPath = $request->file('cv')->store('applications');
+        // $cvPath = $request->file('cv')->store('applications');
 
         // Save application
         Application::create([
             'scholarship_id' => $request->scholarship_id,
             'full_name' => $request->full_name,
             'email' => $request->email,
-            'cv_path' => $cvPath,
+            // 'cv_path' => $cvPath,
         ]);
 
         return redirect()->route('student.scholarships')->with('success', 'Application submitted successfully!');

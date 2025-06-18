@@ -77,8 +77,10 @@
     <textarea name="description" rows="4" required>{{ $scholarship->description }}</textarea>
 
     <label for="deadline">{{ __('messages.application_deadline') }}</label>
-    <input type="date" name="deadline" value="{{ $scholarship->deadline }}" required>
-
+    <input type="date" name="deadline" value="{{ old('deadline') }}" required>
+                @error('deadline')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
     <label for="eligibility">{{ __('messages.eligibility_criteria') }}</label>
     <textarea name="eligibility" rows="4" required>{{ $scholarship->eligibility }}</textarea>
 

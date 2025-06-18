@@ -49,36 +49,6 @@ class HomeController extends Controller
         return view('home.home', compact('aboutSections'));
     }
 
-    // public function user_message(Request $request)
-    // {
-    //     $user_message = new user_m();
-
-    //     $user_message->name = $request->name;
-    //     $user_message->email = $request->email;
-    //     $user_message->phone = $request->phone;
-    //     $user_message->user_message = $request->message;
-
-    //     $user_message->save();
-
-    //     return redirect()->back();
-    // }
-//     public function showAbout()
-// {
-//     $aboutSections = AboutSection::all(); 
-//     return view('home.home', compact('aboutSections'));
-// }
-
-//     public function aboutSection()
-// {
-//     $aboutSection = AboutSection::all();
-//     return view('home.about', compact('aboutSection'));
-// }
-// public function edit_h_m($id)
-// {
-//     $aboutSection = AboutSection::find($id);
-//     return view('admin.edit_h_m', compact('aboutSection'));
-// }
-
     public function home()
     {
         $aboutSections = AboutSection::all(); 

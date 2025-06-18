@@ -26,6 +26,8 @@ class ScholarshipController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
+            'deadline' => 'required|date|after_or_equal:today',
+
         ]);
 
         Scholarship::create($request->all());
@@ -47,6 +49,7 @@ class ScholarshipController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'nullable',
+            'deadline' => 'required|date|after_or_equal:today',
         ]);
 
         $scholarship->update($request->all());

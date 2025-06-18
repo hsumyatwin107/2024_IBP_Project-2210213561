@@ -10,7 +10,7 @@ use App\Models\user_m;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
-use App\Models\AboutSection; // Import AboutSection model
+use App\Models\AboutSection; 
 use App\Mail\StudentReplyMail; // Import StudentReplyMail class
 use Illuminate\Support\Facades\Mail; // Import Mail facade
 use Illuminate\Support\Facades\Log; // Import Log facade
@@ -88,28 +88,6 @@ class AdminController extends Controller
 
     return redirect()->back()->with('success', 'Status updated successfully!');
 }
-// public function reply_message(Request $request, $id)
-// {
-//     $message = ContactMessage::find($id);
-
-//     if (!$message) {
-//         return redirect()->back()->with('error', 'Message not found.');
-//     }
-
-//     $message->reply = $request->reply;
-//     $message->save();
-//     Log::info('Sending email to: ' . $message->email);
-//     // Attempt to send the email
-//     try {
-//         Mail::to($message->email)->send(new StudentReplyMail($request->reply));
-//     } catch (\Exception $e){
-//         Log::error('Mail sending failed: ' . $e->getMessage());
-//         return redirect()->back()->with('error', 'Mail sending failed: ' . $e->getMessage());
-//     }
-//     return redirect()->back()->with('success', 'Reply sent and email delivered.');
-
-// }
-
 
     public function updates(Request $request,$id){
 
@@ -123,36 +101,6 @@ class AdminController extends Controller
         return redirect()->back();
 
     }
-    // public function category(){
-
-    //     $data = Category::all();
-    //     return view('admin.category',compact('data'));
-    // }
-
-    // public function add_category(Request $request){
-
-    //     $data = new category;
-    //     $data->category_name = $request->category;
-
-    //     $data->save();
-
-    //     return redirect()->back()->with('message','category added successfully');
-    // }
-
-    // public function delete_category($id){
-
-    //     $data=Category::find($id);
-
-    //     $data->delete();
-
-    //     return redirect()->back()->with('message','category deleted successfully');
-    // }
-
-    // public function view_h_m(){
-
-    //     $product = AboutSection::all();
-    //     return view('admin.h_m',compact('category'));
-    // }
 
     public function add_h_m(Request $request)
 {
