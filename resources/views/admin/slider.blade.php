@@ -62,7 +62,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
-                <span class="menu-title">{{ __('dashboard') }}</span>
+                <span class="menu-title">{{ __('messages.dashboard') }}</span>
             </a>
         </li>
 
@@ -72,7 +72,7 @@
         <span class="menu-icon">
             <i class="mdi mdi-laptop"></i>
         </span>
-        <span class="menu-title">{{_('scholarship') }}</span>
+        <span class="menu-title">{{__('messages.scholarship') }}</span>
     </a>
 </li>
 
@@ -83,7 +83,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-playlist-play"></i>
                 </span>
-                <span class="menu-title">{{_('application') }}</span>
+                <span class="menu-title">{{__('messages.application') }}</span>
             </a>
         </li>
 
@@ -103,7 +103,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-chart-bar"></i>
                 </span>
-                <span class="menu-title">{{_('users') }}</span>
+                <span class="menu-title">{{__('messages.users') }}</span>
             </a>
         </li>
         {{-- About Section --}}
@@ -112,7 +112,7 @@
                 <span class="menu-icon">
                     <i class="mdi mdi-chart-bar"></i>
                 </span>
-                <span class="menu-title">{{_('edit_section') }}</span>
+                <span class="menu-title">{{__('messages.edit_section') }}</span>
             </a>
         </li>
     </ul>

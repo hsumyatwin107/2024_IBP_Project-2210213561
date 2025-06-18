@@ -31,11 +31,16 @@
                     </div>
                 </header>
             @endif
-            <select onchange="window.location.href='/lang/' + this.value;">
+            <!-- <select onchange="window.location.href='/lang/' + this.value;">
                 <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>English</option>
                 <option value="tr" {{ app()->getLocale() == 'tr' ? 'selected' : '' }}>Türkçe</option>
                 <option value="ar" {{ app()->getLocale() == 'ar' ? 'selected' : '' }}>العربية</option>
-            </select>
+            </select> -->
+            <div class="language-switch">
+                <a href="{{ url('lang/en') }}">EN</a>
+                <a href="{{ url('lang/tr') }}">TR</a>
+                <a href="{{ url('lang/ar') }}">AR</a>
+            </div>
             <!-- Page Content -->
             <main>
                 {{ $slot }}

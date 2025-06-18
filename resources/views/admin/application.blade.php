@@ -70,7 +70,7 @@
 
     <div class="main-panel">
         <div class="content-wrapper">
-            <h1>Student Applications</h1>
+            <h1>{{ __('messages.student_applications') }}</h1>
 
             @if(session('success'))
                 <div class="alert-success">
@@ -82,13 +82,13 @@
                 <table style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Student Name</th>
-                            <th>Father Name</th>
-                            <th>Date of Birth</th>
-                            <th>residence_permit_number</th>
-                            <th>Scholarship</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th>{{ __('messages.student_name') }}</th>
+                            <th>{{ __('messages.father_name') }}</th>
+                            <th>{{ __('messages.date_of_birth') }}</th>
+                            <th>{{ __('messages.residence_permit_number') }}</th>
+                            <th>{{ __('messages.scholarship') }}</th>
+                            <th>{{ __('messages.status') }}</th>
+                            <th>{{ __('messages.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,16 +106,16 @@
                                         @csrf
                                         @method('PATCH')
                                         <input type="hidden" name="status" value="accepted">
-                                        <button type="submit" class="btn btn-accept">Accept</button>
+                                        <button type="submit" class="btn btn-accept">{{ __('messages.accept') }}</button>
                                     </form>
                                     <form method="POST" action="{{ route('application.updateStatus', $application->id) }}" style="display:inline-block;">
                                         @csrf
                                         @method('PATCH')
                                         <input type="hidden" name="status" value="denied">
-                                        <button type="submit" class="btn btn-deny">Deny</button>
+                                        <button type="submit" class="btn btn-deny">{{ __('messages.deny') }}</button>
                                     </form>
                                 @else
-                                    <span class="no-action">No actions available</span>
+                                    <span class="no-action">{{ __('messages.no_actions') }}</span>
                                 @endif
                             </td>
                         </tr>

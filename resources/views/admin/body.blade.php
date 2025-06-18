@@ -35,7 +35,7 @@
                 </div>
               </div>
             </div>
-            <h6 class="text-muted font-weight-normal">Applications Received</h6>
+            <h6 class="text-muted font-weight-normal">{{ __('messages.Applications Received') }}</h6>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
                 </div>
               </div>
             </div>
-            <h6 class="text-muted font-weight-normal">Scholarships Approved</h6>
+            <h6 class="text-muted font-weight-normal">{{ __('messages.Scholarships Approved') }}</h6>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
                 </div>
               </div>
             </div>
-            <h6 class="text-muted font-weight-normal">Applications Pending</h6>
+            <h6 class="text-muted font-weight-normal">{{ __('messages.Applications Pending') }}</h6>
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
                 </div>
               </div>
             </div>
-            <h6 class="text-muted font-weight-normal">Scholarships Rejected</h6>
+            <h6 class="text-muted font-weight-normal">{{ __('messages.Scholarships Rejected') }}</h6>
           </div>
         </div>
       </div>
@@ -113,16 +113,16 @@
       <div class="col-md-4 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Recent Applications</h4>
+            <h4 class="card-title">{{ __('messages.Recent Applications') }}</h4>
             <canvas id="application-history" class="transaction-chart"></canvas>
 
             <div class="bg-gray-dark d-flex d-md-block d-xl-flex flex-row py-3 px-4 px-md-3 px-xl-4 rounded mt-3">
               <div class="text-md-center text-xl-left">
-                <h6 class="mb-1">Application from: Ahmed K.</h6>
+                <h6 class="mb-1">{{ __('messages.Application from Ahmet') }}</h6>
                 <p class="text-muted mb-0">18 May 2025, 10:22 AM</p>
               </div>
               <div class="align-self-center flex-grow text-right text-md-center text-xl-right py-md-2 py-xl-0">
-                <h6 class="font-weight-bold mb-0">Under Review</h6>
+                <h6 class="font-weight-bold mb-0">{{ __('messages.Under Review') }}</h6>
               </div>
             </div>
 
@@ -144,8 +144,8 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-row justify-content-between">
-              <h4 class="card-title mb-1">Ongoing Scholarship Projects</h4>
-              <p class="text-muted mb-1">Current status overview</p>
+              <h4 class="card-title mb-1">{{ __('messages.Ongoing Scholarship Projects') }}</h4>
+              <p class="text-muted mb-1">{{ __('messages.Current status overview') }}</p>
             </div>
             <div class="row">
               <div class="col-12">

@@ -85,7 +85,7 @@
 
     <div class="main-panel">
         <div class="content-wrapper">
-            <h1>Scholarships</h1>
+            <h1>{{ __('messages.scholarships') }}</h1>
 
             @if(session('success'))
                 <div class="alert-success">
@@ -94,21 +94,21 @@
             @endif
 
             <div class="add-new">
-                <a href="{{ route('scholarship.create') }}">+ Add New Scholarship</a>
+                <a href="{{ route('scholarship.create') }}">+ {{ __('messages.add_new_scholarship') }}</a>
             </div>
 
             <div class="mine">
                 <table style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Application Deadline</th>
-                            <th>Eligibility Criteria</th>
-                            <th>Education Level</th>
-                            <th>Scholarship Provider</th>
-                            <th>Contact Email</th>
-                            <th>Actions</th>
+                        <th>{{ __('messages.name') }}</th>
+                        <th>{{ __('messages.description') }}</th>
+                        <th>{{ __('messages.application_deadline') }}</th>
+                        <th>{{ __('messages.eligibility_criteria') }}</th>
+                        <th>{{ __('messages.education_level') }}</th>
+                        <th>{{ __('messages.scholarship_provider') }}</th>
+                        <th>{{ __('messages.contact_email') }}</th>
+                        <th>{{ __('messages.actions') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,11 +122,11 @@
     <td>{{ $scholarship->provider }}</td>
     <td>{{ $scholarship->contact_email }}</td>
     <td>
-        <a href="{{ route('scholarship.edit', $scholarship->id) }}" class="btn btn-edit">Edit</a>
+        <a href="{{ route('scholarship.edit', $scholarship->id) }}" class="btn btn-edit">{{ __('messages.edit') }}</a>
         <form action="{{ route('scholarship.destroy', $scholarship->id) }}" method="POST" style="display:inline-block;">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this scholarship?')">Delete</button>
+            <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this scholarship?')">{{ __('messages.delete') }}</button>
         </form>
     </td>
 </tr>
@@ -134,7 +134,7 @@
 
 @if($scholarships->isEmpty())
 <tr>
-    <td colspan="10" style="text-align:center;">No scholarships found.</td>
+    <td colspan="10" style="text-align:center;">{{ __('messages.no_scholarships') }}</td>
 </tr>
 @endif
 

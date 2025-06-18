@@ -52,7 +52,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('scholarships') }}">
                 <span class="menu-icon"><i class="mdi mdi-file-document-box-check"></i></span>
-                <span class="menu-title">Available Scholarships</span>
+                <span class="menu-title">{{ __('messages.available_scholarships') }}</span>
             </a>
         </li>
 
@@ -60,7 +60,7 @@
         <li class="nav-item menu-items">
             <a class="nav-link" href="{{ url('application') }}">
                 <span class="menu-icon"><i class="mdi mdi-file-document-box-check"></i></span>
-                <span class="menu-title">My Applications</span>
+                <span class="menu-title">{{ __('messages.myapplications') }}</span>
             </a>
         </li>
 

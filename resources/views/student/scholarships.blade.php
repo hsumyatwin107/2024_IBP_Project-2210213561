@@ -53,20 +53,20 @@
     @include('student.header')
     <div class="main-panel">
         <div class="content-wrapper">
-            <h5 style="text-align: center; padding: 5% 0; font-size: 40px;">Available Scholarships</h5>
+            <h5 style="text-align: center; padding: 5% 0; font-size: 40px;">{{ __('messages.avaliable scholarship') }}</h5>
 
             <div class="order_dis">
                 @if ($scholarships->isEmpty())
-                    <p>No scholarships available right now.</p>
+                    <p>{{ __('messages.noscholarships') }}</p>
                 @else
                     <table class="table_des">
                         <thead>
                         <tr class="th_des">
-                            <th>Scholarship Name</th>
-                            <th>Description</th>
-                            <th>eligibility</th>
-                            <th>Deadline</th>
-                            <th>Action</th>
+                            <th>{{ __('messages.scholarship_name') }}</th>
+                            <th>{{ __('messages.description') }}</th>
+                            <th>{{ __('messages.eligibility') }}</th>
+                            <th>{{ __('messages.deadline') }}</th>
+                            <th>{{ __('messages.action') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -78,11 +78,11 @@
                                 <td>{{ $scholarship->deadline }}</td>
                                 <td>
                                     @if (in_array($scholarship->id, $appliedScholarshipIds))
-                                        <span class="btn-disabled">Applied</span>
+                                        <span class="btn-disabled">{{ __('messages.applied') }}</span>
                                     @else
                                         <form action="{{ route('scholarship.apply', $scholarship->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn-apply">Apply</button>
+                                            <button type="submit" class="btn-apply">{{ __('messages.apply') }}</button>
                                         </form>
                                     @endif
                                 </td>

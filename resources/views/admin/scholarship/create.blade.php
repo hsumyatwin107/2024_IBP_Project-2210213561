@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<title>Create Scholarship</title>
     <style>
         body {
             background-color: #f0f2f5;
@@ -60,41 +62,46 @@
     
 <div class="main-panel">
     <div class="content-wrapper">
-        <h1>Add New Scholarship</h1>
+    <div class="language-switch">
+                <a href="{{ url('lang/en') }}">EN</a>
+                <a href="{{ url('lang/tr') }}">TR</a>
+                <a href="{{ url('lang/ar') }}">AR</a>
+            </div>
+        <h1>{{__('messages.add_new_scholarship')}}</h1>
 
         <div class="form-container">
             <form action="{{ route('scholarship.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Scholarship Basic Details -->
-                <label for="name">Scholarship Name</label>
+                <label for="name">{{__('messages.scholarship_name')}}</label>
                 <input type="text" name="name" required>
 
-                <label for="description">Description</label>
+                <label for="description">{{__("messages.description")}}</label>
                 <textarea name="description" rows="4" required></textarea>
 
-                <label for="deadline">Application Deadline</label>
+                <label for="deadline">{{__("messages.application_deadline")}}</label>
                 <input type="date" name="deadline" required>
 
-                <label for="eligibility">Eligibility Criteria</label>
+                <label for="eligibility">{{__("messages.eligibility_criteria")}}</label>
                 <textarea name="eligibility" rows="4" required></textarea>
 
-                <label for="education_level">Education Level</label>
+                <label for="education_level">{{__("messages.education_level")}}</label>
                 <select name="education_level" required>
-                    <option value="">Select level</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="Master">Master</option>
-                    <option value="PhD">PhD</option>
+                    <option value="">{{__("messages.select_level")}}</option>
+                    <option value="Undergraduate">{{__("messages.undergraduate")}}</option>
+                    <option value="Master">{{__("messages.master")}}</option>
+                    <option value="PhD">{{__("messages.phd")}}</option>
                 </select>
 
-                <label for="provider">Scholarship Provider</label>
+                <label for="provider">{{__("messages.scholarship_provider")}}</label>
                 <input type="text" name="provider" required>
 
-                <label for="contact_email">Contact Email</label>
+                <label for="contact_email">{{__("messages.contact_email")}}</label>
                 <input type="email" name="contact_email" required>
 
                 <br><br>
-                <button type="submit">Create Scholarship</button>
+                <button type="submit">{{__("messages.create_scholarship")}}</button>
             </form>
         </div>
     </div>

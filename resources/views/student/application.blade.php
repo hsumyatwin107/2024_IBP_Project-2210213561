@@ -38,19 +38,19 @@
 
     <div class="main-panel">
         <div class="content-wrapper">
-            <h5 style="text-align: center; padding: 5% 0; font-size: 40px;">My Scholarship Applications</h5>
+            <h5 style="text-align: center; padding: 5% 0; font-size: 40px;">{{ __('messages.my_applications') }}</h5>
 
             <div class="order_dis">
                 @if ($applications->isEmpty())
-                    <p>You have not applied to any scholarships yet.</p>
+                    <p>{{ __('messages.no_applications') }}</p>
                 @else
                     <table class="table_des">
                         <thead>
                             <tr class="th_des">
-                                <th>Scholarship Name</th>
-                                <th>Status</th>
-                                <th>Applied At</th>
-                            </tr>
+                            <th>{{ __('messages.scholarship_name') }}</th>
+                            <th>{{ __('messages.status') }}</th>
+                            <th>{{ __('messages.applied_at') }}</th>
+                        </tr>
                         </thead>
                         <tbody>
                             @foreach ($applications as $application)

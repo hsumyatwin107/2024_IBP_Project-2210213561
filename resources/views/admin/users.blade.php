@@ -58,16 +58,16 @@
 
 
 
-            <h1 class="order_dis">All Users</h1>
+            <h1 class="order_dis">{{ __('messages.all_users') }}</h1>
 
             <table class="table_des">
                 <tr class="th_des">
-                    <th>User's Name</th>
-                    <th>User's Email</th>
-                    <th>User Type</th>
-                    <th>New User Type</th>
-                    <th>User Update</th>
-                    <th>Delete User</th>
+                <th>{{ __('messages.user_name') }}</th>
+                <th>{{ __('messages.user_email') }}</th>
+                <th>{{ __('messages.user_type') }}</th>
+                <th>{{ __('messages.new_user_type') }}</th>
+                <th>{{ __('messages.user_update') }}</th>
+                <th>{{ __('messages.delete_user') }}</th>
                 </tr>
 
                 @foreach($users as $user)
@@ -79,16 +79,16 @@
                             <td>{{$user->usertype}}</td>
                             <td>
                                 <div class="div_design">
-                                    <input class="text_color" type="number" min="0" name="usertype" placeholder="please enter a usertype" value="">
+                                    <input class="text_color" type="number" min="0" name="usertype" placeholder="{{ __('messages.enter_user_type') }}" value="">
                                 </div>
                             </td>
                             <td>
                                 <div>
-                                    <input type="submit" value="Update" class="btn btn-primary">
+                                    <input type="submit" value="{{ __('messages.update') }}" class="btn btn-primary">
                                 </div>
                             </td>
                             <td>
-                                <a href="{{url('delete_user',$user->id)}}" class="btn btn-danger" onclick="return confirm('are you sure you want to delete this?')">Delete</a>
+                                <a href="{{url('delete_user',$user->id)}}" class="btn btn-danger" onclick="return confirm('{{ __('messages.confirmdelete') }}')">{{ __('messages.delete') }}</a>
                             </td>
 
                             {{--                        <form action="{{url('/updates',$user->id)}}" method="POST" enctype="multipart/form-data">--}}

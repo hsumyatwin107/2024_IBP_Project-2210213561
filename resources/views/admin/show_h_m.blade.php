@@ -54,16 +54,16 @@
                 </div>
             @endif
 
-            <h2 class="font_size">All Sections</h2>
+            <h2 class="font_size">{{ __('messages.all_sections') }}</h2>
             <div class="add_product">
-                <a href="{{url('add_h_m')}}" class="btn btn-primary">Add Section</a>
-            <table class="center">
-                <tr class="tabel_color">
-                    <th class="space">Description</th>
-                    <th class="space">Image</th>
-                    <th class="space">Edit</th>
-                    <th class="space">Delete</th>
-                </tr>
+                <a href="{{ url('add_h_m') }}" class="btn btn-primary">{{ __('messages.add_section') }}</a>
+                <table class="center">
+                    <tr class="tabel_color">
+                        <th class="space">{{ __('messages.description') }}</th>
+                        <th class="space">{{ __('messages.image') }}</th>
+                        <th class="space">{{ __('messages.edit') }}</th>
+                        <th class="space">{{ __('messages.delete') }}</th>
+                    </tr>
 
                 @foreach($product as $product)
                     <tr>
@@ -73,10 +73,10 @@
                         </td>
 
                         <td>
-                            <a class="btn btn-success" href="{{url('edit_h_m',$product->id)}}">Edit</a>
+                            <a class="btn btn-success" href="{{url('edit_h_m',$product->id)}}">{{ __('messages.edit') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" onclick="return confirm('are you sure you want to delete this?')" href="{{url('delete_section',$product->id)}}">Delete</a>
+                            <a class="btn btn-danger" onclick="return confirm('are you sure you want to delete this?')" href="{{url('delete_section',$product->id)}}">{{ __('messages.delete') }}</a>
                         </td>
                     </tr>
                 @endforeach
